@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Calcula Média</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    
+</head>
+
+<body>
+	
+	<div id="calculator">
+
+		<div class="container">
+			<form action="#"  >
+				<h1>Calculadora</h1>
+				<p>Média</p>
+
+				<div v-bind:class="{ error: !isAlunoAprovado } ">
+					<p >{{media}}</p>
+					<span v-if="!isAlunoAprovado && isPreenchido">{{aluno}} Média não alcançada!</span>
+				</div>
+				
+                <label >Nome</label>
+                <input type="text" name="nome" class="currency" v-model="nome" />
+
+				<label >Matricula</label>
+                <input type="text" name="matricula" class= "currency" v-model="matricula" />
+
+                <label >Nota 1</label>
+                <input type="number" name="nota1" class="currency" v-model.number="nota1" />
+
+                <label >Nota 2</label>
+				<input type="number" name="nota2" class="currency" v-model.number="nota2" />
+
+                <label >Nota 3</label>
+				<input type="number" name="nota3" class="currency" v-model.number="nota3" />
+
+                
+
+			</form>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		var calculator = new Vue({
+    el: '#calculator',
+    data: {
+        nome:"",
+		matricula:"",
+        nota1:null,
+        nota2:null,
+        nota3:null,
+
+
+
+    },
+    computed: {
+        isPreenchido(){
+            return this.nome != '' && this.matricula != '' && this.nota1 != null && this.nota2 != null 
+            && this.nota3 != null;
+        },
+
+        isAlunoAprovado(){
+
+                            
+        return (this.nota1  + this.nota2  + this.media) >= 6.0
+
+        },
+        media(){
+            
+            return (this.nota1 + this.nota2 + this.nota3) / 3;
+         
+         }
+        
+    },
+    
+
+});
+
+	</script>
+
+	
+
+</body>
+
+</html>
